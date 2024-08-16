@@ -12,10 +12,12 @@ This repository contains a Java-based application for managing student records, 
   - [Grade Calculation](#grade-calculation)
   - [File I/O Operations](#file-io-operations)
 - [Class Structure and Hierarchy](#class-structure-and-hierarchy)
+- [Grading System](#grading-system)
 - [Student Methods](#student-methods)
 - [Course Report Methods](#course-report-methods)
 - [Exception Handling](#exception-handling)
 - [Testing](#testing)
+- [Conclusion](#conclusion)
 
 ## Introduction
 
@@ -143,6 +145,14 @@ The system is designed with a clear class hierarchy that follows OOP principles.
     - `CourseReport`: Each `Student` object has an array of `CourseReport` objects, representing the courses the student is taking.
     - `Student.StudentIterator`: An inner class that implements `Iterator<CourseReport>`, allowing for iteration over the `courseReports`.
 
+- **GradStudent**: 
+  - Inherits all attributes and methods from the `Student` class.
+  - May include additional attributes or methods that are specific to graduate-level students, such as research requirements or advanced coursework.
+
+- **BonusStudent**: 
+  - Inherits all attributes and methods from the `Student` class.
+  - Adds functionality for managing bonus points, which can affect the final grade calculation.
+
 - **CourseReport**
   - **Attributes**:
     - `String name`: The name of the course.
@@ -157,17 +167,37 @@ The system is designed with a clear class hierarchy that follows OOP principles.
   - **Usage**:
     - Thrown by methods in the `Student` class when an issue arises during the calculation of the weighted average.
 
+## Grading System
+
+The `GradingSystem` class represents the overall management system for all students within an educational institution. It acts as a database for storing and managing student records, providing functionalities for calculating overall averages and managing student data.
+
+### Attributes
+
+- `String name`: The name of the institution.
+- `Student[] students`: An array of `Student` objects representing the students enrolled in the institution.
+
+### Methods
+
+- **Constructor Methods**:
+  - `GradingSystem()`: Default constructor that initializes the institution name and student array to `null`.
+  - `GradingSystem(String name, int studentCount)`: Initializes the institution with a name and a specified number of students.
+  - `GradingSystem(GradingSystem other)`: Copy constructor that creates a deep copy of an existing `GradingSystem` object.
+
+- **Accessor Methods**:
+  - `String getName()`: Returns the name of the institution.
+  - `void setName(String name)`: Sets the name of the institution.
+  - `Student[] getStudents()`: Returns the array of students.
+
+- **Mutator Methods**:
+  - `void addStudent(Student student)`: Adds a student to the institution’s student array. The method ensures that the correct type of student (e.g., `GradStudent`, `BonusStudent`) is stored.
+
+- **Operational Methods**:
+  - `double getAverage()`: Calculates and returns the average weighted grade of all students in the institution. Handles exceptions related to the calculation process.
+
 ### Class Interactions
 
-- **Serialization and Deserialization**:
-  - The `Student` class implements `Serializable`, allowing it to be serialized to a file. The `id` attribute is marked as transient, meaning it is not included in the serialization process.
-  - The `CourseReport` class includes methods for saving course information to a text file and reading it back from a file.
-
-- **Custom Iterators**:
-  - The `Student` class includes an inner class `StudentIterator` that allows for iteration over the `courseReports` array, enabling easy traversal of the courses a student is enrolled in.
-
-- **Comparator Implementations**:
-  - The `Student` class includes inner classes `AverageComparator` and `CoursePointsComparator`, which implement `Comparator<Student>` for comparing students based on their average grades or the number of course points they have accumulated.
+- The `GradingSystem` class interacts closely with the `Student` class and its subclasses (`GradStudent`, `BonusStudent`). It manages a collection of `Student` objects and performs operations such as calculating the average grades of all students.
+- The class uses the `CourseReport` class indirectly through its interaction with `Student` objects, which hold `CourseReport` arrays.
 
 ## Student Methods
 
@@ -192,7 +222,9 @@ The system is designed with a clear class hierarchy that follows OOP principles.
 
 ### AverageCalcException
 
-This custom exception is thrown when there is an issue calculating a student's average grade. It provides the student's name associated with the failed calculation, helping to identify issues in the data or calculation process.
+This custom exception is thrown when there is an issue calculating a student's average grade. It provides the
+
+ student's name associated with the failed calculation, helping to identify issues in the data or calculation process.
 
 ## Testing
 
