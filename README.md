@@ -44,7 +44,7 @@ The Student Grades and Course Management System is a comprehensive application d
 To use the Student Grades and Course Management System, clone the repository and include the relevant Java files in your project.
 
 ```bash
-git clone https://github.com/YourUsername/Student-Management-System.git
+git clone https://github.com/Yarin-Shohat/Student-Management-System.git
 ```
 
 Ensure your project is set up to compile and run Java code.
