@@ -10,7 +10,7 @@ This repository contains a Java-based application for managing student records, 
   - [Student Management](#student-management)
   - [Course Management](#course-management)
   - [Grade Calculation](#grade-calculation)
-  - [File I/O Operations](#file-i/o-operations)
+  - [File I/O Operations](#file-io-operations)
 - [Class Structure and Hierarchy](#class-structure-and-hierarchy)
 - [Student Methods](#student-methods)
 - [Course Report Methods](#course-report-methods)
